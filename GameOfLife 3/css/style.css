@@ -1,0 +1,87 @@
+.container{
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.block1,
+.block2,
+.block3,
+.block4,
+.block5,
+.block6{
+    width: 170px;
+    height: 240px;
+    border-radius: 10px;
+    border: 1px solid black;
+    animation: blocks 2s infinite;
+}
+
+@keyframes blocks{
+    0%{transform: scale(100%) rotate(0deg);}
+    25%{transform: scale(103%) rotate(-4deg);}
+    50%{transform: scale(100%) rotate(0deg);}
+    75%{transform: scale(103%) rotate(4deg);}
+    100%{transform: scale(100%) rotate(0deg);}
+}
+
+.block1{
+    background-color: rgb(26, 222, 55);
+}
+
+.block2{
+    background-color: rgb(255, 251, 40);
+}
+
+.block3{
+    background-color: rgb(255, 0, 55);
+}
+
+.block4{
+    background-color: rgb(255, 255, 255);
+}
+
+.block5{
+    background-color: rgb(81, 188, 255);
+}
+
+.block6{
+    background-color: rgb(221, 0, 255);
+}
+
+.block1__item1,
+.block2__item1,
+.block3__item1,
+.block4__item1,
+.block5__item1,
+.block6__item1{
+    text-align: center;
+    font-size: 22px;
+    font-family: sans-serif;
+}
+
+
+.block1__item2,
+.block2__item2,
+.block3__item2,
+.block4__item2,
+.block5__item2,
+.block6__item2{
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+canvas{
+    margin-left: 29.5%;
+}
