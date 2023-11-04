@@ -246,5 +246,33 @@ function draw() {
 }
 
 
+let student = {
+   name: "Karlen",
+   lastname:"Papoyan",     
+   age: "18",
+   
+
+   showInfo(){
+           
+        console.log(this.name + " " + this.lastname + " " + this.age);
+   }
+
+
+}
+
+
+student.showInfo();
+
+
+  
+
+
+
+
+
+
+
+
+
 
 
