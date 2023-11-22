@@ -1,11 +1,25 @@
 let LivingCreature = require('./livingCreature')
 
 module.exports = class Magician extends LivingCreature {
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-        this.direction = []
 
+
+    getNewCoordinates() {
+        this.directions = [
+        [this.x - 1, this.y - 1],
+        [this.x, this.y - 1],
+        [this.x + 1, this.y - 1],
+        [this.x - 1, this.y],
+        [this.x + 1, this.y],
+        [this.x - 1, this.y + 1],
+        [this.x, this.y + 1],
+        [this.x + 1, this.y + 1]
+        ];
+        }
+    
+    
+    chooseCell(character, character2) {
+        this.getNewCoordinates();
+        return super.chooseCell(character,character2);
     }
 
 

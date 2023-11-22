@@ -3,7 +3,7 @@ var app = express()
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 
-app.use(express.static("."));
+app.use(express.static("../client"));
 
 app.get('/', function (req, res) {
     res.redirect('index.html');
@@ -27,7 +27,13 @@ function matrixGenerator(
             for (let j = 0; j < matrixSize; j++) {
                     matrix[i].push(0);
             }
-    }
+    
+         
+        
+        }
+
+   
+
 
     for (let i = 0; i < grassCount; i++) {
 
@@ -97,63 +103,66 @@ function matrixGenerator(
 
 
 }
-let matrix = matrixGenerator(20, 30, 15, 7, 5, 5, 6);
+matrix = matrixGenerator(20, 30, 15, 7, 5, 5, 6);
 io.sockets.emit('send matrix', matrix)
 
-side = 40
-let grassArray = [];
-let grassEaterArr = [];
-let predatorArr = [];
-let magicianArr = []
-let waterArr = []
-let flowerArr = []
+ grassArray = [];
+ grassEaterArr = [];
+ predatorArr = [];
+ magicianArr = []
+ waterArr = []
+ flowerArr = []
 
-let Grass = require("./grass")
-let GrassEater = require("./grassEater")
-let Predator = require("./predator")
-let Magician = require("./magician")
-let Water = require("./water")
-let Flower = require("./flower")
+ Grass = require("./grass")
+ GrassEater = require("./grassEater")
+ Predator = require("./predator")
+ Magician = require("./magician")
+ Water = require("./water")
+ Flower = require("./flower")
 
-
-for (let y = 0; y < matrix.length; y++) {
-    for (let x = 0; x < matrix[0].length; x++) {
-            if (matrix[y][x] == 1) {
-                    let gr = new Grass(x, y)
-                    grassArray.push(gr);
+ function createObject(matrix){
+        for (let y = 0; y < matrix.length; y++) {
+                for (let x = 0; x < matrix[0].length; x++) {
+                        if (matrix[y][x] == 1) {
+                                let gr = new Grass(x, y)
+                                grassArray.push(gr);
+                        }
+                        //GrassEate
+                        else if (matrix[y][x] == 2) {
+                                let gre = new GrassEater(x, y)
+                                grassEaterArr.push(gre);
+                        }
+            
+                        else if (matrix[y][x] == 3) {
+                                let pred = new Predator(x, y)
+                                predatorArr.push(pred)
+            
+                        }
+            
+                        else if (matrix[y][x] == 4) {
+                                let magic = new Magician(x, y)
+                                magicianArr.push(magic)
+                        }
+            
+                        else if (matrix[y][x] == 5) {
+                                let wat = new Water(x, y)
+                                waterArr.push(wat)
+                        }
+            
+            
+                        else if (matrix[y][x] == 7) {
+                                let flw = new Flower(x, y)
+                                flowerArr.push(flw)
+            
+                        }
+                }
+            
             }
-            //GrassEate
-            else if (matrix[y][x] == 2) {
-                    let gre = new GrassEater(x, y)
-                    grassEaterArr.push(gre);
-            }
+            io.sockets.emit('send matrix', matrix)
 
-            else if (matrix[y][x] == 3) {
-                    let pred = new Predator(x, y)
-                    predatorArr.push(pred)
-
-            }
-
-            else if (matrix[y][x] == 4) {
-                    let magic = new Magician(x, y)
-                    magicianArr.push(magic)
-            }
-
-            else if (matrix[y][x] == 5) {
-                    let wat = new Water(x, y)
-                    waterArr.push(wat)
-            }
+ }
 
 
-            else if (matrix[y][x] == 7) {
-                    let flw = new Flower(x, y)
-                    flowerArr.push(flw)
-
-            }
-    }
-
-    io.sockets.emit('send matrix', matrix)
-}
 
 function game() {
     for (var i in grassArray) {

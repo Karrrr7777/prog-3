@@ -1,14 +1,26 @@
 let LivingCreature = require("./livingCreature");
 
 module.exports = class Water extends LivingCreature {
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-        // this.energy = 5
-        this.direction = [
 
-        ]
+
+    getNewCoordinates() {
+        this.directions = [
+        [this.x - 1, this.y - 1],
+        [this.x, this.y - 1],
+        [this.x + 1, this.y - 1],
+        [this.x - 1, this.y],
+        [this.x + 1, this.y],
+        [this.x - 1, this.y + 1],
+        [this.x, this.y + 1],
+        [this.x + 1, this.y + 1]
+        ];
+        }
+
+    chooseCell(character) {
+        this.getNewCoordinates();
+        return super.chooseCell(character);
     }
+
 
 
     move() {
