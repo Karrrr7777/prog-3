@@ -1,7 +1,9 @@
-var express = require('express');   
-var app = express()
-var server = require('http').Server(app)
-var io = require('socket.io')(server)
+let express = require('express');   
+let fs = require('fs');
+let app = express()
+let server = require('http').Server(app)
+let io = require('socket.io')(server)
+let GrassEater = require("./GrassEater")
 
 app.use(express.static("../client"));
 
@@ -114,7 +116,7 @@ io.sockets.emit('send matrix', matrix)
  flowerArr = []
 
  Grass = require("./grass")
- GrassEater = require("./grassEater")
+ grassEater = require("./grassEater")
  Predator = require("./predator")
  Magician = require("./magician")
  Water = require("./water")
@@ -165,7 +167,7 @@ io.sockets.emit('send matrix', matrix)
 
 
 function game() {
-    for (var i in grassArray) {
+    for (let i in grassArray) {
         grassArray[i].mul();
 
 }
@@ -204,7 +206,7 @@ for (let i in magicianArr) {
 
 
 
-for (var i in waterArr) {
+for (let i in waterArr) {
 
         if (grassArray.length >= 270) {
                 waterArr[i].mul();
@@ -215,7 +217,7 @@ for (var i in waterArr) {
 }
 
 
-for (var i in flowerArr) {
+for (let i in flowerArr) {
 
 
         if (grassArray.length >= 300) {
@@ -235,3 +237,35 @@ setInterval(game, 1000)
 io.on('connection', function () {
     createObject(matrix)
 })
+
+
+
+let statistics ={
+        grass:0,
+        grassEater:0,
+        predator:0,
+        magician:0,
+        flower:0,
+        water:0,
+
+
+}
+
+
+
+setInterval(function(){
+        statistics.grass= grassArray.length
+        statistics.grassEater= grassEaterArr.length
+        statistics.predator= predatorArr.length
+        statistics.magician= magicianArr.length
+        statistics.flower= flowerArr.length
+        statistics.water= waterArr.length
+
+        fs.writeFile("statistics.json", JSON.stringify(statistics),()=>{
+
+        console.log(statistics);
+        
+        })
+
+
+},1000)

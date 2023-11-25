@@ -46,7 +46,7 @@ chooseCell(character, character2) {
             }
             for (var i in grassEaterArr) {
                 if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
-                    grassEater.splice(i, 1);
+                    grassEaterArr.splice(i, 1);
                     break;
                 }
             }

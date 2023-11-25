@@ -55,15 +55,19 @@ setInterval(
         },1000
     )
 
-  
+
+// let myEvent = new Event("customEvent", { cancelable: true , bubbles: true})
+// let button = document.querySelector("Button")
+
+// button.addEventListener("customEvent", e => {
+//         console.log("Button", e.defaultPrevanted);
+
+// })
+
+// document.addEventListener("customEvent", e => {
+//         console.log("Document", e.defaultPrevanted);
+
+// button.dispatchEvent(myEvent)
 
 
-
-
-
-
-
-
-
-
-
+// })
