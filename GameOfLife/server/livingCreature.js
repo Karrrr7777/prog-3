@@ -16,7 +16,7 @@ module.exports = class LivingCreature {
 
     }
 
-    chooseCell(character,character2) {
+    chooseCell(character,character2, character3) {
         var found = [];
         for (let i = 0; i < this.directions.length; i++) {
             let x = this.directions[i][0];

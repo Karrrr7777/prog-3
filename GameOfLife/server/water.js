@@ -16,9 +16,9 @@ module.exports = class Water extends LivingCreature {
         ];
         }
 
-    chooseCell(character) {
+    chooseCell(character1, character2,character3) {
         this.getNewCoordinates();
-        return super.chooseCell(character);
+        return super.chooseCell(character1,character2,character3);
     }
 
 

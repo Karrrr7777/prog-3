@@ -1,29 +1,35 @@
 var socket = io()
 
-side = 40 
+side = 40
 
-function setup(){
+let xotiGuyn = "green";
+let grEaterguyn = "yellow"
+let predatorGuyn = "red"
+let magicianGuyn = "white"
+
+
+function setup() {
         createCanvas(20 * side, 20 * side);
-        background("#acacac")
+        background("gray")
 }
 
 function display(matrix) {
         for (let y = 0; y < matrix.length; y++) {
                 for (let x = 0; x < matrix[y].length; x++) {
                         if (matrix[y][x] == 1) {
-                                fill("green")
+                                fill(xotiGuyn)
                         } else if (matrix[y][x] == 2) {
-                                fill('yellow')
+                                fill('grEaterguyn')
                         } else if (matrix[y][x] == 3) {
-                                fill("red")
+                                fill(predatorGuyn)
 
                         }
 
                         else if (matrix[y][x] == 4) {
-                                fill("white")
+                                fill(magicianGuyn)
                         }
                         else if (matrix[y][x] == 5) {
-                                fill("aqua")
+                                fill("cyan")
                         }
 
                         else if (matrix[y][x] == 6) {
@@ -46,28 +52,82 @@ function display(matrix) {
                 }
         }
 
-        
+
 }
 
 setInterval(
         function () {
-        socket.on('send matrix', display)
-        },1000
-    )
+                socket.on('send matrix', display)
+        }, 1000
+)
 
 
-// let myEvent = new Event("customEvent", { cancelable: true , bubbles: true})
-// let button = document.querySelector("Button")
-
-// button.addEventListener("customEvent", e => {
-//         console.log("Button", e.defaultPrevanted);
-
-// })
-
-// document.addEventListener("customEvent", e => {
-//         console.log("Document", e.defaultPrevanted);
-
-// button.dispatchEvent(myEvent)
 
 
-// })
+
+var but = document.getElementById("Ashun");
+but.addEventListener("click",handleAshunClick )
+
+
+function handleAshunClick(evt) {
+        xotiGuyn = "orange"
+        grEaterguyn = "blue"
+
+
+}
+
+
+var but = document.getElementById("Garun");
+but.addEventListener("click",handleGarunClick )
+
+
+function handleGarunClick(evt) {
+        xotiGuyn = "green"
+        predatorGuyn = "darkgreen"
+        grEaterguyn = "yellow"
+        
+        socket.emit("Garun")
+}
+
+var but = document.getElementById("Dzmer");
+but.addEventListener("click",handleDzmerClick )
+
+
+function handleDzmerClick(evt) {
+        xotiGuyn = "white"
+        magicianGuyn = "darkblue"
+        predatorGuyn = "red"
+        grEaterguyn = "yellow"
+
+
+        socket.emit("Dzmer")
+}
+
+var but = document.getElementById("Amar");
+but.addEventListener("click",handleAmarClick )
+
+
+function handleAmarClick(evt) {
+        xotiGuyn = "red"
+        magicianGuyn = "darkblue"
+        predatorGuyn = "red"
+        grEaterguyn = "yellow"
+
+        socket.emit("Amar")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
