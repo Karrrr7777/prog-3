@@ -3,7 +3,7 @@ let fs = require('fs');
 let app = express()
 let server = require('http').Server(app)
 let io = require('socket.io')(server)
-let GrassEater = require("./GrassEater")
+let GrassEater = require("./grassEater")
 
 app.use(express.static("../client"));
 
@@ -245,6 +245,7 @@ io.on('connection', function (socket) {
         socket.on("Garun", grasssFunc)
         socket.on("Garun", preFunc)
         socket.on("Garun", greaterFunc)
+        socket.on("Event", eventFunc)
 })
 
 
@@ -267,15 +268,15 @@ function grassFunc() {
         }
 }
 
-function predFunc(){
-        for(let i in predatorArr)
-        predatorArr[i].energy >= 0
+function predFunc() {
+        for (let i in predatorArr)
+                predatorArr[i].energy >= 0
 }
 
-function greFunc(){
-        for(let i in grassEaterArr)
-        grassEaterArr[i].energy >= 0
-        
+function greFunc() {
+        for (let i in grassEaterArr)
+                grassEaterArr[i].energy >= 0
+
 
 }
 
@@ -287,15 +288,15 @@ function grasFunc() {
         }
 }
 
-function predatFunc(){
-        for(let i in predatorArr)
-        predatorArr[i].energy >= 10
+function predatFunc() {
+        for (let i in predatorArr)
+                predatorArr[i].energy >= 10
 }
 
-function greatFunc(){
-        for(let i in grassEaterArr)
-        grassEaterArr[i].energy >= 12
-        
+function greatFunc() {
+        for (let i in grassEaterArr)
+                grassEaterArr[i].energy >= 12
+
 
 }
 
@@ -307,17 +308,51 @@ function grasssFunc() {
         }
 }
 
-function preFunc(){
-        for(let i in predatorArr)
-        predatorArr[i].energy >= 18
+function preFunc() {
+        for (let i in predatorArr)
+                predatorArr[i].energy >= 18
 }
 
-function greaterFunc(){
-        for(let i in grassEaterArr)
-        grassEaterArr[i].energy >= 14
-        
+function greaterFunc() {
+        for (let i in grassEaterArr)
+                grassEaterArr[i].energy >= 14
+
 
 }
+
+function eventFunc(){
+        for (let i in grassEaterArr) {
+                grassEaterArr[i].die();
+
+        }
+
+
+        for (let i in predatorArr) {
+                predatorArr[i].die()
+        }
+
+        for (let i in magicianArr) {
+                magicianArr[i].die()
+        }
+
+        for(let i in waterArr){
+                waterArr[i].die()
+
+        }
+
+        for(let i in flowerArr){
+                flowerArr[i].die()
+
+        }
+
+        for(let i in grassArray){
+                grassArray[i].die()
+
+        }
+
+}
+
+
 
 
 

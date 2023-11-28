@@ -4,7 +4,13 @@ body{
     background-repeat: no-repeat
 }
 
-
+button{
+    color:orangered;
+    padding: 8px 22px;
+    border-radius: 6px;
+    background: "white";
+    transition: all 0.2s ease;
+}
 
 .container{
     width: 100%;

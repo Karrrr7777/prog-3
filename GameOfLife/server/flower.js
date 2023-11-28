@@ -64,4 +64,13 @@ module.exports = class Flower extends LivingCreature {
         }
     }
 
+    die() {
+        matrix[this.y][this.x] = 0;
+        for (var i in flowerArr) {
+            if (this.x == flowerArr[i].x && this.y == flowerArr[i].y) {
+                flowerArr.splice(i, 1);
+                break;
+            }
+        }
+    }
 }

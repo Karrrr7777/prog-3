@@ -63,11 +63,20 @@ module.exports = class Water extends LivingCreature {
         }
     }
 
+    die() {
+        matrix[this.y][this.x] = 0;
+        for (var i in waterArr) {
+            if (this.x == waterArr[i].x && this.y == waterArr[i].y) {
+                waterArr.splice(i, 1);
+                break;
+            }
+        }
+    }
+    
 
 
-}
 
 
 
-
+    }
 

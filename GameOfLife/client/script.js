@@ -19,7 +19,7 @@ function display(matrix) {
                         if (matrix[y][x] == 1) {
                                 fill(xotiGuyn)
                         } else if (matrix[y][x] == 2) {
-                                fill('grEaterguyn')
+                                fill(grEaterguyn)
                         } else if (matrix[y][x] == 3) {
                                 fill(predatorGuyn)
 
@@ -110,12 +110,23 @@ but.addEventListener("click",handleAmarClick )
 function handleAmarClick(evt) {
         xotiGuyn = "red"
         magicianGuyn = "darkblue"
-        predatorGuyn = "red"
+        predatorGuyn = "darkgreen"
         grEaterguyn = "yellow"
 
         socket.emit("Amar")
 }
 
+
+var but = document.getElementById("Event")
+but.addEventListener("click", handleEventClick)
+
+function handleEventClick(evt){
+
+        socket.emit("Event")
+
+
+
+}
 
 
 

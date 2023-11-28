@@ -16,4 +16,14 @@ module.exports = class Grass extends LivingCreature {
             this.multiple = 0;
         }
     }
+
+    die() {
+        matrix[this.y][this.x] = 0;
+        for (var i in grassArray) {
+            if (this.x == grassArray[i].x && this.y == grassArray[i].y) {
+                grassArray.splice(i, 1);
+                break;
+            }
+        }
+    }
 }
